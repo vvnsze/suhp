@@ -1,0 +1,20 @@
+{
+  "name": "suhp",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Lee Mordell",
+    "Vivian Sze",
+    "Lucas Fisher",
+    "Lauren Settle"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
