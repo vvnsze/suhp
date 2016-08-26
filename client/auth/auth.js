@@ -10,11 +10,15 @@ angular.module('suhp.auth', [])
   $scope.signup = function(){
     Auth.signup($scope.user);
       .then(function(response){
+        //if username is taken,
+          //then ng-show *username is taken, try another
+        //else change view to dashboard
+        if (response.data.)
         $location.path('/dashboard');
       })
       .catch(function(error){
         console.log(error);
-        $location.path('/404page');
+        alert('There was an error signing you up. Please refresh the page and try again.');
       })
 
   };
@@ -27,7 +31,7 @@ angular.module('suhp.auth', [])
       })
       .catch(function(error){
         console.log(error);
-        $location.path('/404page');
+        alert('There was an error signing you in. Please refresh the page and try again.');
       });
   };
 
