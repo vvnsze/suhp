@@ -8,7 +8,7 @@ db.authenticate()
 	})
 	.catch(function(err) {
 		console.log('Cannot connect to the database', err);
-	})
+	});
 
 var User = db.define('User', {
 	username: {
@@ -45,6 +45,7 @@ Email.sync();
 
 
 //Exports 3 tables to server file
-exports.User = User;
-exports.Goal = Goal;
-exports.Email = Email;
+// exports.User = User;
+// exports.Goal = Goal;
+// exports.Email = Email;
+module.exports = db;
