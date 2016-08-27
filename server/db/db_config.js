@@ -1,62 +1,50 @@
-var mysql= require('mysql');
+var Sequelize = require('sequelize');
+// var pg = require('pg');
+var db = new Sequelize('postgres://admin:RURZUCHBOXJVALGL@aws-us-east-1-portal.5.dblayer.com:11251/compose');
+console.log('db', db);
+db.authenticate()
+	.then(function(err) {
+		console.log('Successful Connection to the database');
+	})
+	.catch(function(err) {
+		console.log('Cannot connect to the database', err);
+	})
 
-var knex = require('knex')({
-	client:'mysql',
-	connection:{
-		host 		: 'localhost',
-		user 		: 'root',
-		database	: 'suhp'
-	}
+var User = db.define('User', {
+	username: {
+		type: Sequelize.STRING,
+		unique: true
+	},
+	email: Sequelize.STRING,
+  	password: Sequelize.STRING
 });
 
-//we have to create the database for deployment
-//we have to add some start scripts for deployment
+var Goal = db.define('Goal', {
+	description: Sequelize.STRING,
+	deadline: Sequelize.DATE,
+  	hasExpired: Sequelize.BOOLEAN,
+  	hasCompleted: Sequelize.BOOLEAN
+});
 
-knex.schema.hasTable('users').then(
-	function(exists){
-	if(!exists){
-		knex.schema.createTable('users',
-			function(user){
-				user.increments('user_id').primary();
-				user.string('username', 255).unique();
-				user.string('email',255);
-				user.string('password',255);
-			})
-			.then(function (table) {
-      			console.log('Created Table', table);
-    		});
-		}
-	});
+var Email = db.define('Email', {
+	email: Sequelize.STRING,
+});
 
-knex.schema.hasTable('goals').then(
-	function(exists){
-		if(!exists){
-			knex.schema.createTable('goals',
-				function(goal){
-					goal.integer('user_id').unsigned().references('user_id').inTable('users');
-					goal.string('description', 255);
-					goal.date('deadline');
-					goal.boolean('hasExpired');
-					goal.boolean('wasCompleted');
-				})
-				.then(function (table) {
-      				console.log('Created Table', table);
-    			});
-		}
-	});
+Goal.belongsTo(User);
+Email.belongsTo(User);
 
-knex.schema.hasTable('emails').then(
-	function(exists){
-		if(!exists){
-			knex.schema.createTable('emails',
-				function(email){
-					email.integer('user_id').unsigned().references('user_id').inTable('users');
-					email.string('email',255);
-				})
-				.then(function (table) {
-      				console.log('Created Table', table);
-    			});
-		}
-	});
+//Syncs tables to create tables 
+User.sync();
+Goal.sync();
+Email.sync();
 
-module.exports = knex;
+// will drop the tables and init them
+//sequelize.sync({force:true}).then(function(){
+//    console.log("Created tables in db.js");
+//});
+
+
+//Exports 3 tables to server file
+exports.User = User;
+exports.Goal = Goal;
+exports.Email = Email;
