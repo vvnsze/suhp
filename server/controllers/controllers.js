@@ -8,14 +8,15 @@ var userModel = require('../models/userModel');
 module.exports={
 	users:{
 		get: function(req,res){
-
+			console.log("in user get controller");
+			userModel.get(req.body, function(data){
+				res.send(data);
+			});
 
 
 		},
 		post:function(req,res){
-			userModel.post(req.body, function(user){
-				res.send(data);
-			});
+	
 			
 		}
 
