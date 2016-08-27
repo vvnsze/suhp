@@ -11,25 +11,26 @@ angular.module('suhp.services', [])
       data: user
     })
     .then(function(response){
-      return response.data
+      return response.data;
     })
     .catch(function(error){
-      return error
-    })
+      console.error('Error in services.factory.signup');
+    });
   }
+
   //factory to post email friend list to designated table within db
-  var postFriendEmailList = function(friendEmailList) {
+  var storeFriendEmailList = function(friendEmailList) {
     return $http({
       method: 'POST',
       url: 'endpoint for list of friends e-mails',
       data: friendEmailList
     })
     .then(function(response){
-      response.data
+      return response.data;
     })
     .catch(function(error){
-      return error
-    })
+      console.error('Error in services.factory.signup');
+    });
   }
 
   return {
