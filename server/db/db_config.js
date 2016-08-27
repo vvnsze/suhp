@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 // var pg = require('pg');
 var db = new Sequelize('postgres://admin:RURZUCHBOXJVALGL@aws-us-east-1-portal.5.dblayer.com:11251/compose');
-console.log('db', db);
+// console.log('db', db);
 db.authenticate()
 	.then(function(err) {
 		console.log('Successful Connection to the database');
