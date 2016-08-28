@@ -1,14 +1,6 @@
 var Sequelize = require('sequelize');
-// var pg = require('pg');
-// var db = new Sequelize('postgres://admin:RURZUCHBOXJVALGL@aws-us-east-1-portal.5.dblayer.com:11251/compose');
-
- var db = new Sequelize('suhp', 'root', null, {
-  host: 'localhost',
-  dialect: 'mysql',
-});
-
-
-
+var pg = require('pg');
+var db = new Sequelize('postgres://admin:IRYNMXNYKZSGGJXE@aws-us-east-1-portal.9.dblayer.com:11612/compose');
 
 // console.log('db', db);
 db.authenticate()
