@@ -1,8 +1,6 @@
-
 var userModel = require('../models/userModel');
-
-// var goalModel = require('/../../models/goalModel');
-// var emailModel = require('/../../models/emailModel-');
+var goalModel = require('../models/goalModel');
+var emailModel = require('../models/emailModel');
 
 
 module.exports={
