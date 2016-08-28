@@ -1,6 +1,15 @@
 var Sequelize = require('sequelize');
 // var pg = require('pg');
-var db = new Sequelize('postgres://admin:RURZUCHBOXJVALGL@aws-us-east-1-portal.5.dblayer.com:11251/compose');
+// var db = new Sequelize('postgres://admin:RURZUCHBOXJVALGL@aws-us-east-1-portal.5.dblayer.com:11251/compose');
+
+ var db = new Sequelize('suhp', 'root', null, {
+  host: 'localhost',
+  dialect: 'mysql',
+});
+
+
+
+
 // console.log('db', db);
 db.authenticate()
 	.then(function(err) {
@@ -45,7 +54,7 @@ Email.sync();
 
 
 //Exports 3 tables to server file
-// exports.User = User;
-// exports.Goal = Goal;
-// exports.Email = Email;
-module.exports = db;
+exports.User = User;
+exports.Goal = Goal;
+exports.Email = Email;
+//module.exports = db;
