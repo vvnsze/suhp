@@ -41,11 +41,10 @@ angular.module('suhp.services', [])
 
 //factory function for user dashboard, will handle post requests for
 .factory('Dashboard', $http) {
-  var getUserGoals = function(userGoals){
+  var getUserGoals = function(){
     return $http({
       method: 'GET',
       url: '/goals'
-      data: userGoals
     })
     .then(function(response){
       return response.data
@@ -55,11 +54,11 @@ angular.module('suhp.services', [])
     })
   }
 
-  var storeUserGoals = function(userGoalList){
+  var storeUserGoals = function(userGoal){
       return $http({
         method: 'POST',
         url: '/goals',
-        data: userGoalList
+        data: userGoal
             // should data be {
             //   "username": username,
             //   "description": description,
@@ -67,12 +66,6 @@ angular.module('suhp.services', [])
             //   "hasExpired": false,
             //   "hasCompleted": false
             // }
-      })
-      .then(function(response){
-        console.log('Successful POST request')
-      })
-      .catch(function(error){
-        console.error('There was an error sending data to the database')
       })
   }
 
