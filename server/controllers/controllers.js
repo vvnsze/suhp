@@ -24,6 +24,10 @@ module.exports={
 
 		},
 		post:function(req,res){
+			console.log("in goals get controller");
+			console.log(req.body);
+			console.log("*********");
+			goalModel.post(req,res);
 			
 		}
 

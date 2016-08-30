@@ -4,7 +4,19 @@ module.exports={
 	get:function(callback){
 
 	},
-	post:function(callback){
-
+	post:function(request,res){
+     db.Goal.findOrCreate({where: 
+     	{
+     	 description:request.body.description,
+     	 deadline: request.body.deadline,
+     	 hasExpired:false,
+     	 hasCompleted:false,
+     	 UserId:2
+     	 }})
+        .spread(function(user, created) {
+          res.sendStatus(created ? 201 : 200);
+          
+        });
+	console.log("in goal post model");
 	}
 };
