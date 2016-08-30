@@ -1,3 +1,4 @@
 /node_modules
 /client/lib
-/oldKNEXdb
+/server/config/server_config.js
+
