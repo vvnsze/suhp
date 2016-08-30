@@ -31,9 +31,12 @@ module.exports={
 	emails:{
 		get: function(req,res){
 
+			emailModel.get(req, res);
+
 		},
 		post:function(req,res){
 
+			emailModel.post(req, res);
 		}
 
 	}
