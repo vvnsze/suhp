@@ -20,5 +20,5 @@ angular.module('suhp.dashboard', [])
     Dashboard.storeUserGoals($scope.goal)
       //need to figure out has expired and has completed checkbox
   }
-
+  
 })
