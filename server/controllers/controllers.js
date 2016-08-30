@@ -21,6 +21,11 @@ module.exports={
 	},
 	goals:{
 		get: function(req,res){
+			console.log("in goals get controller");
+			console.log(req.query);
+			console.log("*********");
+			goalModel.get(req, res);
+			
 
 		},
 		post:function(req,res){
