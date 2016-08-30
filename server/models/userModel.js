@@ -1,16 +1,30 @@
 var db = require('../db/db_config.js');
 
 module.exports={
-	get:function(callback){
-
-
-
+	get:function(req,res){
+        console.log('req', req.query);
+        db.User.findAll({where: {
+        username: req.query.username,
+        password: req.query.password
+        }})
+        .then(function(user) {
+            console.log('user', user[0]);
+            if(user == '') {
+                res.status(404).send('User not found');
+            } else {
+                res.status(200).send(user);         
+            }
+        })
+        .catch(function(err) {
+             res.status(404).send('There was an error retrieving data fromthe database', err);
+        }); 
 	},
-	post:function(request,res){
+
+	post:function(req,res){
      db.User.findOrCreate({where: 
-     	{username: request.body.username,
-     	 email:request.body.email,
-     	 password: request.body.password}})
+     	{username: req.body.username,
+     	 email:req.body.email,
+     	 password: req.body.password}})
         .spread(function(user, created) {
           res.sendStatus(created ? 201 : 200);
           

@@ -7,11 +7,11 @@ module.exports={
 	users:{
 		get: function(req,res){
 
-
-
+			userModel.get(req,res);
+			
 		},
 		post:function(req,res){
-			console.log("in user get controller");
+			console.log("in user post controller");
 			console.log(req.body);
 			console.log("*********");
 			userModel.post(req,res);
