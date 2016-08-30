@@ -38,3 +38,20 @@ angular.module('suhp.services', [])
     postFriendEmailList : postFriendEmailList
   }
 }
+
+//factory function for user dashboard, will handle post requests for
+.factory('Dashboard', $http) {
+  var getUserGoals = function(userGoals){
+    return $http({
+      method: 'GET',
+      url: 
+    })
+  }
+
+
+
+  return {
+    getUserGoals : getUserGoals,
+  }
+
+}
