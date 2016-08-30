@@ -8,6 +8,9 @@ var router =require('./config/routes');
 //create db
 var db = require('./db/db_config.js');
 
+//require mailgun api
+var mailgun = require('./config/mailgun.js');
+
 //create router
 var router = require('./config/routes.js');
 var app = express();
