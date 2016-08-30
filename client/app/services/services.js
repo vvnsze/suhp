@@ -44,14 +44,43 @@ angular.module('suhp.services', [])
   var getUserGoals = function(userGoals){
     return $http({
       method: 'GET',
-      url: 
+      url: '/goals'
+      data: userGoals
     })
+    .then(function(response){
+      return response.data
+    })
+    .catch(function(error){
+      console.error('There was an error retrieving your data')
+    })
+  }
+
+  var storeUserGoals = function(userGoalList){
+      return $http({
+        method: 'POST',
+        url: '/goals',
+        data: userGoalList
+            // should data be {
+            //   "username": username,
+            //   "description": description,
+            //   "deadline": deadline,
+            //   "hasExpired": false,
+            //   "hasCompleted": false
+            // }
+      })
+      .then(function(response){
+        console.log('Successful POST request')
+      })
+      .catch(function(error){
+        console.error('There was an error sending data to the database')
+      })
   }
 
 
 
   return {
     getUserGoals : getUserGoals,
+    storeUserGoals: storeUserGoals
   }
 
 }
