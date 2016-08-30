@@ -10,7 +10,7 @@ module.exports={
 			userModel.get(req,res);
 			
 		},
-		post:function(req,res){
+		post: function(req,res){
 			console.log("in user post controller");
 			console.log(req.body);
 			console.log("*********");
@@ -28,12 +28,18 @@ module.exports={
 			
 
 		},
-		post:function(req,res){
+		post: function(req,res){
 			console.log("in goals get controller");
 			console.log(req.body);
 			console.log("*********");
 			goalModel.post(req,res);
 			
+		},
+		put: function(req, res){
+			console.log("in goals put controller");
+			console.log(req.query);
+			console.log("*********");
+			goalModel.put(req,res);
 		}
 
 	},
