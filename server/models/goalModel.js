@@ -9,9 +9,9 @@ module.exports={
      	{
      	 description:request.body.description,
      	 deadline: request.body.deadline,
-     	 hasExpired:0,
-     	 hasCompleted:0,
-     	 userId:1
+     	 hasExpired:false,
+     	 hasCompleted:false,
+     	 UserId:2
      	 }})
         .spread(function(user, created) {
           res.sendStatus(created ? 201 : 200);
