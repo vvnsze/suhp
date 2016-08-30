@@ -1,8 +1,7 @@
 
 var userModel = require('../models/userModel');
-
-// var goalModel = require('/../../models/goalModel');
-// var emailModel = require('/../../models/emailModel-');
+var goalModel = require('../models/goalModel');
+var emailModel = require('../models/emailModel');
 
 
 module.exports={
@@ -26,6 +25,10 @@ module.exports={
 
 		},
 		post:function(req,res){
+			console.log("in goals get controller");
+			console.log(req.body);
+			console.log("*********");
+			goalModel.post(req,res);
 			
 		}
 
