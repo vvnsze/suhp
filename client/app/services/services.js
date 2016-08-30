@@ -2,12 +2,12 @@
 
 angular.module('suhp.services', [])
 
-.factory('Auth', $http) {
+.factory('Auth', function($http){
   //factory to post username to database upon signup
   var signup = function(user){
     return $http({
       method: 'POST',
-      url: 'endpoint for user table',
+      url: '/signup',
       data: user
     })
     .then(function(response){
@@ -22,7 +22,7 @@ angular.module('suhp.services', [])
   var storeFriendEmailList = function(friendEmailList) {
     return $http({
       method: 'POST',
-      url: 'endpoint for list of friends e-mails',
+      url: '/email',
       data: friendEmailList
     })
     .then(function(response){
@@ -37,10 +37,13 @@ angular.module('suhp.services', [])
     signup : signup,
     postFriendEmailList : postFriendEmailList
   }
-}
+})
+
+
+
 
 //factory function for user dashboard, will handle post requests for
-.factory('Dashboard', $http) {
+.factory('Dashboard', function($http){
   var getUserGoals = function(){
     return $http({
       method: 'GET',
@@ -59,21 +62,11 @@ angular.module('suhp.services', [])
         method: 'POST',
         url: '/goals',
         data: userGoal
-            // should data be {
-            //   "username": username,
-            //   "description": description,
-            //   "deadline": deadline,
-            //   "hasExpired": false,
-            //   "hasCompleted": false
-            // }
       })
   }
-
-
-
   return {
     getUserGoals : getUserGoals,
     storeUserGoals: storeUserGoals
   }
 
-}
+})

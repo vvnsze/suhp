@@ -13,11 +13,8 @@ angular.module('suhp.dashboard', [])
       console.error(error)
     }
   }
-
   initializeGoals();
-
   //attached to ng-submit
-    //git test
 
   $scope.addGoal = function(){
     Dashboard.storeUserGoals($scope.goal)
