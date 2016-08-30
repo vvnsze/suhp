@@ -37,11 +37,22 @@ module.exports={
         .catch(function(err) {
             res.status(404).send('There was an error posting data to the database', err);
             }); 
-    
-        
+	},
+    put:function(req,res){
 
-
-
-	console.log("in goal post model");
-	}
+        db.Goal.findOrCreate({where:{id:req.query.goalId}})
+        .spread(function(goal){
+            // console.log(goal);
+            // res.json(goal);
+            goal.update({
+                hasCompleted:true
+            })
+            .then(function(){
+                res.send("Successful update");
+            });
+        })
+        .catch(function(err){
+            res.status(404).send('There was an error updating data to the database', err);
+        });
+    }
 };
