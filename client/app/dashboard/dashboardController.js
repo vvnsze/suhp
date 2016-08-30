@@ -14,11 +14,13 @@ angular.module('suhp.dashboard', [])
     }
   }
   initializeGoals();
-  //attached to ng-submit
 
+
+
+  //attached to ng-submit
   $scope.addGoal = function(){
     Dashboard.storeUserGoals($scope.goal)
       //need to figure out has expired and has completed checkbox
   }
-  
+
 })
