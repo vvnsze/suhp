@@ -15,10 +15,10 @@
       <!-- figure out userdash. should have username, friends, and logout -->
     </nav>
     <div></div>
-      <form class="goals-input">
-        <input id ="description" type="text" name="name" value="" placeholder="My goal is to...">
+      <form class="goals-input" ng-submit="addGoal">
+        <input id ="description" type="text" ng-model="goal.description" value="" placeholder="My goal is to...">
         <!-- <input id="reward" type="text" name="name" value="" placeholder="Reward"> -->
-        <input id="due-date" type="text" name="name" value="" placeholder="Due date">
+        <input id="deadline" type="text" ng-model="goal.deadline" value="" placeholder="Deadline">
         <input type="submit" name="name" value="Submit">
       </form>
 
