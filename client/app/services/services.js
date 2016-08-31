@@ -2,12 +2,12 @@
 
 angular.module('suhp.services', [])
 
-.factory('Auth', $http) {
+.factory('Auth', function($http){
   //factory to post username to database upon signup
   var signup = function(user){
     return $http({
       method: 'POST',
-      url: 'endpoint for user table',
+      url: '/signup',
       data: user
     })
     .then(function(response){
@@ -16,13 +16,13 @@ angular.module('suhp.services', [])
     .catch(function(error){
       console.error('Error in services.factory.signup');
     });
-  }
+  };
 
   //factory to post email friend list to designated table within db
   var storeFriendEmailList = function(friendEmailList) {
     return $http({
       method: 'POST',
-      url: 'endpoint for list of friends e-mails',
+      url: '/email',
       data: friendEmailList
     })
     .then(function(response){
@@ -31,10 +31,10 @@ angular.module('suhp.services', [])
     .catch(function(error){
       console.error('Error in services.factory.signup');
     });
-  }
+  };
 
   return {
     signup : signup,
     postFriendEmailList : postFriendEmailList
-  }
-}
+  }//closing for return object
+}); //closing bracket for factory
