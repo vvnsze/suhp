@@ -16,7 +16,7 @@ angular.module('suhp.services', [])
     .catch(function(error){
       console.error('Error in services.factory.signup');
     });
-  }
+  };
 
   //factory to post email friend list to designated table within db
   var storeFriendEmailList = function(friendEmailList) {
@@ -31,11 +31,16 @@ angular.module('suhp.services', [])
     .catch(function(error){
       console.error('Error in services.factory.signup');
     });
-  }
+  };
+
+  var signin = function(userobj){
+    return;
+  };
 
   return {
     signup : signup,
-    postFriendEmailList : postFriendEmailList
+    postFriendEmailList : postFriendEmailList,
+    signin: signin
   }
 })
 
@@ -69,12 +74,12 @@ angular.module('suhp.services', [])
             //   "hasExpired": false,
             //   "hasCompleted": false
             // }
-      })
-  }
+      });
+  };
 
   return {
     getUserGoals : getUserGoals,
     storeUserGoals: storeUserGoals
   }
 
-})
+});
