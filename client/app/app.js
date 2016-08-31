@@ -14,7 +14,7 @@ angular.module('suhp', [
         templateUrl: 'app/auth/signup.html',
         controller: 'AuthController'
       })
-      .when('/goals', {
+      .when('/goal', {
         templateUrl: 'app/dashboard/dashboard.html',
         controller: 'DashController'
       })
