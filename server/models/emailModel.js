@@ -23,10 +23,14 @@ module.exports={
 					mg.sendInitialEmails(emailList, req, res);
 
 					res.status(201).send('created');
+<<<<<<< f30c1e4e8fe3b0de5f2d76f298c74dfe1f7d96a5
 				})
 				  .catch(function(err) {
 				  	res.send('There was an error ', err);
 				  })
+=======
+				});
+>>>>>>> [pull] add functionality to send email to friends when account created
 			});
 		})
 
