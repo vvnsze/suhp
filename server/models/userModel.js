@@ -1,23 +1,33 @@
 var db = require('../db/db_config.js');
 var gif = require('../config/giphy.js');
+var bcrypt = require('bcrypt');
 
-module.exports={
+module.exports= {
+
 	get:function(req,res){
-        console.log('req', req.query);
-        db.User.findAll({where: {
-        username: req.query.username,
-        password: req.query.password
+
+        db.User.findOne({where: {
+        username: req.query.username
         }})
         .then(function(user) {
             
+            //check is user exists in DB, if not, send 404 error
             if(user == '') {
                 res.status(404).send('User not found');
             } else {
-                res.status(200).send(user);         
+
+                //compare password with has in db
+                console.log('does pass match? ', bcrypt.compareSync(req.query.password, user.password_hash));
+                if(bcrypt.compareSync(req.query.password, user.password_hash)) {
+                    res.status(200).send(user);            
+                } else {
+                    res.status(403).send('Incorrect password');
+                }
+
             }
         })
         .catch(function(err) {
-             res.status(404).send('There was an error retrieving data fromthe database', err);
+             res.status(404).send('There was an error retrieving data from the database', err);
         }); 
 	},
 
