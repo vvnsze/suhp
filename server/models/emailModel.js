@@ -11,25 +11,23 @@ module.exports={
 		db.User.findOrCreate({where: {
 			username: req.body.username
 		}})
-		.spread(function(user, created) {
+		.spread(function(user) {
 			let emailList = req.body.emails;
 			emailList.forEach(function(address) {
-				db.Email.create({
-					UserId: user.get('id'),
-					email: address
-				}).then(function() {
-
-					//When a user is created, an initial email is sent out to user's email list
-					mg.sendInitialEmails(emailList, req, res);
-
-					res.status(201).send('created');
+					db.Email.create({
+						UserId: user.get('id'),
+						email: address
+						})
+					})
 				})
-				  .catch(function(err) {
-				  	res.send('There was an error ', err);
-				  })
-				});
-			});
-		})
+		.then(function() {
+			//When a user is created, an initial email is sent out to user's email list
+			mg.sendInitialEmails(req.body.emails, req, res);
+			// res.status(201).send('created');
 
+		})
+		.catch(function(err) {
+		  	res.send('There was an error ', err);
+		  })
 	}
 };
