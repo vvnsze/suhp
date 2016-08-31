@@ -14,7 +14,7 @@ angular.module('suhp.services', [])
       return response.data;
     })
     .catch(function(error){
-      console.error('Error in services.factory.signup');
+      console.error('+++line17 services.js: Error in services.factory.signup');
     });
   };
 
@@ -29,20 +29,35 @@ angular.module('suhp.services', [])
       return response.data;
     })
     .catch(function(error){
-      console.error('Error in services.factory.signup');
+      console.error('+++line 32 services.js: Error in storeFriendEmailList');
     });
   };
 
+  var userFound = false;
 
   var signin = function(userobj){
-    return;
+    console.log("+++line 38 services.js user object", userobj);
+    return $http({
+      method: 'GET',
+      url: '/signin',
+      params: userobj
+    }).then(function(response){
+      if(response.data.length > 0){
+        if (response.data[0].username === userobj.username && response.data[0].password === userobj.password){
+          return userFound = true;
+        } else {
+          return userFound;
+        }
+    }).catch(function(error){
+      console.error('+++line 52 services.js: There was a problem in services/sign in function');
+    });
   };
-
 
   return {
     signup : signup,
     postFriendEmailList : postFriendEmailList,
-    signin: signin
+    signin: signin,
+    userFound: userFound
   }
 
 })
@@ -61,7 +76,7 @@ angular.module('suhp.services', [])
       return response.data
     })
     .catch(function(error){
-      console.error('There was an error retrieving your data')
+      console.error('+++line79 services.js: There was an error retrieving your data')
     })
   }
 

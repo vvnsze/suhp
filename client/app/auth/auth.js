@@ -2,6 +2,7 @@ angular.module('suhp.auth', [])
 
 .controller('AuthController', function($scope, Auth){
   $scope.user = {};
+  $scope.userFound = Auth.userFound;
 
 //Sign up should check username availability
 
@@ -15,7 +16,7 @@ angular.module('suhp.auth', [])
                   //then ng-show *username is taken, try another name
                 //else change view to dashboard
 
-        $location.path('/dashboard');
+
       })
       .catch(function(error){
         console.log(error);
@@ -28,7 +29,11 @@ angular.module('suhp.auth', [])
   $scope.signin = function(){
     Auth.signin($scope.user)
       .then(function(){
-        $location.path('/dashboard');
+        if($scope.userNotFound === false){
+          $location.path('/dashboard');
+        } else {
+          //function for showing that signing in has a problem;
+        }
       })
       .catch(function(error){
         console.log(error);
