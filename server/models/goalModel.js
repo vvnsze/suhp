@@ -46,7 +46,7 @@ module.exports={
                 db.Email.findAll({ where: { 
                 UserId: userId
                 }})
-            .then(function(emails){
+                .then(function(emails){
                     var userEmailList=emails.map(function(email){
                         return email.get('email');
                     });
@@ -56,52 +56,39 @@ module.exports={
 
                     goalCronJobDB[goalId]={};
 
-                    var goalJobDeadline= schedule.scheduleJob('*/2 * * * * *', function(){
-                        console.log("deadline email sent");
+                    var shameDeadline = new Date(req.body.deadline);
+                    console.log( "shameDeadline "+shameDeadline);
+                    console.log( "shameDeadline day"+ shameDeadline.getDate());
+                    console.log( "shameDeadline month"+ shameDeadline.getMonth());
+                    console.log( "shameDeadline year"+ shameDeadline.getFullYear());
+
+                    var reminderDeadline= new Date(req.body.deadline);
+                    reminderDeadline.setDate(reminderDeadline.getDate()-2);
+                    console.log( "reminderDeadline "+reminderDeadline);
+                    
+
+                    var goalJobDeadline= schedule.scheduleJob(reminderDeadline, function(){
+                        console.log("reminderDeadline email sent");
                         mailGun.sendReminderEmails(userEmailList,req);
                     });
                     goalCronJobDB[goalId].goalJobDeadline=goalJobDeadline;
 
-                    var goalJobShame=schedule.scheduleJob('*/2 * * * * *', function(){
+                    var goalJobShame=schedule.scheduleJob(shameDeadline, function(){
                         console.log("shame email sent");
                         mailGun.sendShameEmails(userEmailList,req);
                     });
 
                     goalCronJobDB[goalId].goalJobShame=goalJobShame;
 
-                    res.json(goalCronJobDB);
+                    // res.json(goalCronJobDB);
 
                     
                     
-                    // setTimeout(function(){
-                    //     goalJobDeadline.cancel();
-                    //     goalJobShame.cancel();
-                    // }, 20000);
 
-                    //res.sendStatus(created ? 201 : 200);
-
+                    res.sendStatus(created ? 201 : 200);
+                }); 
             });
-
-
-                // console.log(goal);
-                
-            });
-
-
-            //     mailGun.sendInitialEmails(userEmailList, req, res);
-
-            // var goalJob= schedule.scheduleJob('* * * * * *', function(/*GOAL OBJECT, USER OBJECT*/){
-            // console.log("SCHEDULED JOB!!");
-            // //SEND SHAME BLAST (/*GOAL OBJECT*/)
-            // });
-
-            // setTimeout(function(){
-            //     goalJob.cancel();
-            // }, 10000);
-
-                
-
-            })
+        })
         .catch(function(err) {
             res.status(404).send('There was an error posting data to the database', err);
             }); 
