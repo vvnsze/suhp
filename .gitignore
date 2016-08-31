@@ -1,8 +1,4 @@
 /node_modules
-<<<<<<< HEAD
 /client/lib
 /server/config/server_config.js
-
-=======
 /server/config/server_config.js
->>>>>>> mailgun
