@@ -26,10 +26,9 @@ module.exports={
 				})
 				  .catch(function(err) {
 				  	res.send('There was an error ', err);
-				  })
+				  });
 				});
-			});
-		})
 
-	}
-};
+			});
+		}
+	};
