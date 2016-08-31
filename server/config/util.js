@@ -15,7 +15,7 @@ module.exports = {
 			})
 			.catch(function(err) {
 				res.status(404).send('There was an error retrieving data from the database', err);
-			})
+			});
 		});
 	}
-}
+};
