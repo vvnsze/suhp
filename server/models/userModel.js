@@ -22,15 +22,16 @@ module.exports={
 	},
 
 	post:function(req,res){
-     db.User.findOrCreate({where: 
+     db.User.create(
      	{username: req.body.username,
      	 email:req.body.email,
-     	 password: req.body.password}})
-        .spread(function(user, created) {
-
-          res.sendStatus(created ? 201 : 200);
-          
-        });
+         password: req.body.password})
+        .then(function(user) {
+          res.sendStatus(200);  
+        })
+        .catch(function(err) {
+            console.log('There was a DB error', err);
+        })
 	console.log("in user post model");
 	}
 };
