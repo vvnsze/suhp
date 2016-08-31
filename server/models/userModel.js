@@ -1,7 +1,6 @@
 var db = require('../db/db_config.js');
 var gif = require('../config/giphy.js');
 
-
 module.exports={
 	get:function(req,res){
         console.log('req', req.query);
