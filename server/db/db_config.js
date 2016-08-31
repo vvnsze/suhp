@@ -1,6 +1,7 @@
 var Sequelize = require('sequelize');
 var pg = require('pg');
 var db = new Sequelize('postgres://admin:IRYNMXNYKZSGGJXE@aws-us-east-1-portal.9.dblayer.com:11612/compose');
+var bcrypt = require('bcrypt');
 
 // console.log('db', db);
 db.authenticate()
@@ -16,8 +17,23 @@ var User = db.define('User', {
 		type: Sequelize.STRING,
 		unique: true
 	},
+	salt: {
+		type: Sequelize.STRING
+	},
 	email: Sequelize.STRING,
-  	password: Sequelize.STRING
+  	password_hash: Sequelize.STRING,
+  	password: {
+  		type: Sequelize.VIRTUAL,
+  		set: function(val) {
+  			let salt = bcrypt.genSaltSync(10);
+  			let hash = bcrypt.hashSync(val, salt);
+  			console.log('hash func', hash);
+
+  			this.setDataValue('password', val);
+  			this.setDataValue('password_hash', hash);
+  			this.setDataValue('salt', salt);
+  		}
+	}
 });
 
 var Goal = db.define('Goal', {
