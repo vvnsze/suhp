@@ -1,4 +1,11 @@
 var db = require('../db/db_config.js');
+var schedule = require('node-schedule');
+var mailGun = require('../config/mailgun.js');
+// var utils = require('../config/util.js');
+
+var goalCronJobDB={};
+
+
 
 module.exports={
 	get:function(req, res){
@@ -18,21 +25,51 @@ module.exports={
         }); 
         // res.send("JUST A TEST");
 	},
-	post:function(request,res){
-        db.User.findOrCreate({where:{username: request.body.username}})
+	post:function(req,res){
+        var userId;
+        db.User.findOrCreate({where:{username: req.body.username}})
         .spread(function(user){
-            console.log("USER ID of "+request.body.username+"  "+user.get('id'));
+            console.log("USER ID of "+req.body.username+"  "+user.get('id'));
+            userId=user.get('id');
             db.Goal.findOrCreate({where: 
          	{
-         	 description:request.body.description,
-         	 deadline: request.body.deadline,
+         	 description:req.body.description,
+         	 deadline: req.body.deadline,
          	 hasExpired:false,
          	 hasCompleted:false,
          	 UserId:user.get('id')
          	 }})
-            .spread(function(user, created) {
-            res.sendStatus(created ? 201 : 200);
-                });
+            .spread(function(goal, created) {
+                console.log("UserId of new emails "+userId);
+                db.Email.findAll({ where: { 
+                UserId: userId
+                }})
+            .then(function(emails){
+                    console.log(emails);
+                    //res.send(emails);
+                    mailGun.sendInitialEmails(emails, req, res);
+                    res.sendStatus(created ? 201 : 200);
+            });
+
+
+                // console.log(goal);
+                
+            });
+
+
+            //     mailGun.sendInitialEmails(userEmailList, req, res);
+
+            // var goalJob= schedule.scheduleJob('* * * * * *', function(/*GOAL OBJECT, USER OBJECT*/){
+            // console.log("SCHEDULED JOB!!");
+            // //SEND SHAME BLAST (/*GOAL OBJECT*/)
+            // });
+
+            // setTimeout(function(){
+            //     goalJob.cancel();
+            // }, 10000);
+
+                
+
             })
         .catch(function(err) {
             res.status(404).send('There was an error posting data to the database', err);
