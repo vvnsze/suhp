@@ -4,6 +4,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 var router =require('./config/routes');
+var request = require('request');
 
 //create db
 var db = require('./db/db_config.js');
