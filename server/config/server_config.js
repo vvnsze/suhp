@@ -1,1 +1,2 @@
-module.exports = mailgun_api_key = 'key-90c5aa96522579e3b0a36635b1e14bea';
+//Mailgun Api Key
+module.exports = 'key-90c5aa96522579e3b0a36635b1e14bea';
