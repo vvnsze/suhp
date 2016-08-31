@@ -23,7 +23,10 @@ module.exports={
 					mg.sendInitialEmails(emailList, req, res);
 
 					res.status(201).send('created');
-				});
+				})
+				  .catch(function(err) {
+				  	res.send('There was an error ', err);
+				  })
 			});
 		})
 
