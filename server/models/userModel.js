@@ -1,5 +1,6 @@
 var db = require('../db/db_config.js');
 
+
 module.exports={
 	get:function(req,res){
         console.log('req', req.query);
@@ -26,6 +27,7 @@ module.exports={
      	 email:req.body.email,
      	 password: req.body.password}})
         .spread(function(user, created) {
+
           res.sendStatus(created ? 201 : 200);
           
         });
