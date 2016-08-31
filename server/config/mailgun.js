@@ -6,7 +6,7 @@ var gif = require('./giphy.js');
 
 module.exports = {
 
-    sendInitialEmails: function(userEmailList, req, res) {
+    sendInitialEmails: function(userEmailList, req) {
         //3 'Help Me' gifs from giphy
         let gifList = ['http://media4.giphy.com/media/Y8ocCgwtdj29O/200w_d.gif',
             'https://media4.giphy.com/media/l46Cbqvg6gxGvh2PS/200_d.gif',
@@ -20,14 +20,14 @@ module.exports = {
             let message = `<div style='display:flex;'>
       						<div style='flex-direction:row;'>
 	          					<p>Your friend 
-	          					<span style='font-weight:bold'>Lee </span>
-	          					wants you to support them in accomplishing their goal!</p>
+	          					<span style='font-weight:bold'>${req.body.username} </span>
+	          					wants you to support them in accomplishing their goal ${req.body.description}!</p>
 	          					<div style='text-align:center;'>
 	          					<img src=http://media4.giphy.com/media/Y8ocCgwtdj29O/200w_d.gif></img>
 	          					</div>
       						</div>
   						   </div>`
-
+            console.log(email);
             var data = {
                 from: 'SUHP <postmaster@sandboxfc8ed1e2db424ce48574ca88fa53eb0e.mailgun.org>',
                 to: email,
@@ -43,31 +43,33 @@ module.exports = {
 
     },
 
-    sendReminderEmails: function(goalObj, req, res) {
-
+    sendReminderEmails: function(userEmailList, req) {
+        userEmailList.forEach(function(email){
         var data = {
             from: 'SUHP <postmaster@sandboxfc8ed1e2db424ce48574ca88fa53eb0e.mailgun.org>',
-            to: 'lsfisher@usc.edu',
-            subject: 'Remind ${userName} to keep working on their goal!',
-            text: '${userName}\'s goal deadline is almost here! Remind them to keep working on ${goal}'
+            to: email,
+            subject: `Remind ${req.body.username} to keep working on their goal!`,
+            text: `${req.body.username}\'s goal deadline is almost here! Remind them to keep working on ${req.body.description}`
         };
 
         mailgun.messages().send(data, function(error, body) {
             console.log('body', body);
+            });
         });
     },
 
-    sendShameEmails: function(goalObj, req, res) {
-
+    sendShameEmails: function(userEmailList, req) {
+        userEmailList.forEach(function(email){
         var data = {
             from: 'SUHP <postmaster@sandboxfc8ed1e2db424ce48574ca88fa53eb0e.mailgun.org>',
             to: 'lsfisher@usc.edu',
-            subject: 'Shame...${userName} wasn\'t able to accomplish their goal in time!',
-            text: '${userName} wasn\'t able to ${goal}! Shame! Shame! Shame!'
+            subject: `Shame...${req.body.username} wasn\'t able to accomplish their goal in time!`,
+            text: `${req.body.username} wasn\'t able to ${req.body.description}! Shame! Shame! Shame!`
         };
 
         mailgun.messages().send(data, function(error, body) {
             console.log('body', body);
+            });
         });
     }
-}
+};

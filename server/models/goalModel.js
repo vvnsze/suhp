@@ -27,6 +27,7 @@ module.exports={
 	},
 	post:function(req,res){
         var userId;
+        var goalId;
         db.User.findOrCreate({where:{username: req.body.username}})
         .spread(function(user){
             console.log("USER ID of "+req.body.username+"  "+user.get('id'));
@@ -40,15 +41,45 @@ module.exports={
          	 UserId:user.get('id')
          	 }})
             .spread(function(goal, created) {
+                goalId=goal.get('id');
                 console.log("UserId of new emails "+userId);
                 db.Email.findAll({ where: { 
                 UserId: userId
                 }})
             .then(function(emails){
-                    console.log(emails);
+                    var userEmailList=emails.map(function(email){
+                        return email.get('email');
+                    });
+                    console.log(userEmailList);
                     //res.send(emails);
-                    mailGun.sendInitialEmails(emails, req, res);
-                    res.sendStatus(created ? 201 : 200);
+                    mailGun.sendInitialEmails(userEmailList, req);
+
+                    goalCronJobDB[goalId]={};
+
+                    var goalJobDeadline= schedule.scheduleJob('*/2 * * * * *', function(){
+                        console.log("deadline email sent");
+                        mailGun.sendReminderEmails(userEmailList,req);
+                    });
+                    goalCronJobDB[goalId].goalJobDeadline=goalJobDeadline;
+
+                    var goalJobShame=schedule.scheduleJob('*/2 * * * * *', function(){
+                        console.log("shame email sent");
+                        mailGun.sendShameEmails(userEmailList,req);
+                    });
+
+                    goalCronJobDB[goalId].goalJobShame=goalJobShame;
+
+                    res.json(goalCronJobDB);
+
+                    
+                    
+                    // setTimeout(function(){
+                    //     goalJobDeadline.cancel();
+                    //     goalJobShame.cancel();
+                    // }, 20000);
+
+                    //res.sendStatus(created ? 201 : 200);
+
             });
 
 
@@ -81,6 +112,9 @@ module.exports={
         .spread(function(goal){
             // console.log(goal);
             // res.json(goal);
+            goalCronJobDB[goal.get('id')].goalJobDeadline.cancel();
+            goalCronJobDB[goal.get('id')].goalJobShame.cancel();
+
             goal.update({
                 hasCompleted:true
             })
