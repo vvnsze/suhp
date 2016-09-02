@@ -9,6 +9,11 @@ angular.module('suhp.auth', [])
     return vm.userFound;
   };
   vm.usernameTaken;
+  vm.hideSignup;
+  vm.showFriendForm = false;
+  vm.addFriend = function(){
+    vm.user.emails.push(vm.user.friendEmail);
+  }
 
 //Sign up should check username availability
 
@@ -17,7 +22,8 @@ angular.module('suhp.auth', [])
     Auth.signup(vm.user)
       .then(function(response){
 
-        //run a function that hides the entire sign up section and just shows the friends list
+        vm.hideSignup = true;
+        vm.showFriendForm = true;
 
       })
       .catch(function(error){
@@ -28,8 +34,13 @@ angular.module('suhp.auth', [])
   };
 
   vm.storeFriendEmailList = function(){
-    Auth.storeFriendEmailList()
-  }
+    Auth.storeFriendEmailList(vm.user.username, vm.user.emails)
+    .then(function(response){
+      $location.path('/dashboard');
+    }).catch(function(error){
+      alert("Oops, the friend list didn't survive, please try again");
+    });
+  };
 
   // Triggers the auth function so it posts user information and directs them to dashboard
 
@@ -39,7 +50,6 @@ angular.module('suhp.auth', [])
         if(vm.userFound){
           $location.path('/dashboard');
         } else {
-          // function for showing that signing in has a problem;
           showSigninError();
         }
       })

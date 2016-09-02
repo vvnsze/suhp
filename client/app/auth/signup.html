@@ -6,7 +6,7 @@
   </div>
 
   <!-- this is the code for user signup -->
-  <div class='row'>
+  <div class='row' ng-show='ctrl.hideSignup'>
 
 
     <div class = "signup col-md-12">
@@ -38,11 +38,11 @@
 
 <!-- This is the code for adding friends -->
 
-  <div class = 'row'>
+  <div class = 'row' ng-show='ctrl.showFriendForm'>
 
     <div class='friendlist col-md-6'>
       <h3>Add a Judger</h3>
-      <form ng-submit='storeFriendEmailList()'>
+      <form ng-submit='ctrl.addFriend()'>
         <p>Enter your friend's email:</p>
         <div id='friendEmail'>
           <input type="email" placeholder="email" ng-model='ctrl.user.friendEmail'>
@@ -53,7 +53,7 @@
           <input type='text' placeholder="friend name" ng-model='ctrl.user.friendName'>
         </div>
         <br> -->
-        <input type="submit" class="btn btn-info" value="Add friend">
+        <input type="submit" class="btn btn-info" value="Add a friend">
       </form>
     </div>
 
@@ -66,7 +66,8 @@
         <p>
           {{ctrl.user.friendEmail}}
         </p>
-    </div>
+      </div>
+      <button class="btn btn-info" ng-click="ctrl.storeFriendEmailList()">Confirm List of Judges</button>
 
   </div>
 

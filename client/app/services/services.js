@@ -14,7 +14,7 @@ angular.module('suhp.services', [])
       return response.data;
     })
     .catch(function(error){
-      console.error('+++line17 services.js: Error in services.factory.signup');
+      return console.error('+++line17 services.js: Error in services.factory.signup');
     });
   };
 
@@ -23,7 +23,10 @@ angular.module('suhp.services', [])
     return $http({
       method: 'POST',
       url: '/email',
-      data: friendEmailList
+      data: {
+        username: userName,
+        emails: friendEmailList
+      }
     })
     .then(function(response){
       return response.data;
