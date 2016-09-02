@@ -8,13 +8,10 @@
 
 }
 
-#newuser{
+.padding{
   padding-bottom: 15px;
 }
 
-#friendEmail{
-  padding-bottom: 5px;
-}
 
 .jumbotron {
   background-color: pink;
