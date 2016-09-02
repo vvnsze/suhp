@@ -14,6 +14,10 @@
         <form name=signin ng-submit="ctrl.signin()">
           Username:
           <input type="text" ng-model="ctrl.user.username" required placeholder="Enter username">
+          <div ng-if="ctrl.showSigninError()">
+            <br>
+            Sign in failed. Please try again
+          </div>
           <br><br>
           Password:
           <input type="password" ng-model="ctrl.user.password" required placeholder="Enter password">

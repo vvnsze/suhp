@@ -1,14 +1,18 @@
 angular.module('suhp.auth', [])
 
-.controller('AuthController', function($scope, Auth){
-  $scope.user = {};
-  $scope.userFound = Auth.userFound;
+.controller('AuthController', [function(Auth){
+  var vm = this;
+  vm.user = {};
+  vm.userFound = Auth.userFound;
+  vm.showSigninError = function(){
+    return vm.userFound;
+  }
 
 //Sign up should check username availability
 
-  $scope.signup = function(){
+  vm.signup = function(){
 
-    Auth.signup($scope.user)
+    Auth.signup(vm.user)
       .then(function(response){
         //? establish response type client will receive from database
         // will need to receive a boolean indicating whether or not username is in db
@@ -26,13 +30,15 @@ angular.module('suhp.auth', [])
   };
 
   // Triggers the auth function so it posts user information and directs them to dashboard
-  $scope.signin = function(){
-    Auth.signin($scope.user)
+
+  vm.signin = function(){
+    Auth.signin(vm.user)
       .then(function(){
-        if($scope.userNotFound === false){
+        if(vm.userFound){
           $location.path('/dashboard');
         } else {
-          //function for showing that signing in has a problem;
+          // function for showing that signing in has a problem;
+          showSigninError();
         }
       })
       .catch(function(error){
@@ -41,4 +47,4 @@ angular.module('suhp.auth', [])
       });
   };
 
-})
+}]);

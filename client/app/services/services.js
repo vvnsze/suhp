@@ -19,7 +19,7 @@ angular.module('suhp.services', [])
   };
 
   //factory to post email friend list to designated table within db
-  var storeFriendEmailList = function(friendEmailList) {
+  var storeFriendEmailList = function(friendEmailList){
     return $http({
       method: 'POST',
       url: '/email',
@@ -48,6 +48,7 @@ angular.module('suhp.services', [])
         } else {
           return userFound;
         }
+      }
     }).catch(function(error){
       console.error('+++line 52 services.js: There was a problem in services/sign in function');
     });
@@ -77,8 +78,8 @@ angular.module('suhp.services', [])
     })
     .catch(function(error){
       console.error('+++line79 services.js: There was an error retrieving your data')
-    })
-  }
+    });
+  };
 
   var storeUserGoals = function(userGoal){
       return $http({
@@ -100,4 +101,5 @@ angular.module('suhp.services', [])
     storeUserGoals: storeUserGoals
   }
 
-});
+
+}); //for line 5
