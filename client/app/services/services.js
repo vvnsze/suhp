@@ -19,7 +19,7 @@ angular.module('suhp.services', [])
   };
 
   //factory to post email friend list to designated table within db
-  var storeFriendEmailList = function(friendEmailList){
+  var storeFriendEmailList = function(userName,friendEmailList){
     return $http({
       method: 'POST',
       url: '/email',
