@@ -12,18 +12,18 @@
     <div class = "signup col-md-12">
 
       <form name="signupForm" ng-submit='ctrl.signup()'>
-        <div class='padding'>
+        <div class='authPadding'>
           <p>What's your name?</p>
           <p ng-show="ctrl.usernameTaken">
             Try a new Username
           </p>
           <input required type='text' ng-model='ctrl.user.username'>
         </div>
-        <div class='padding'>
+        <div class='authPadding'>
           <p>What's your email?</p>
           <input required type='text' ng-model='ctrl.user.email'>
         </div>
-        <div class='padding'>
+        <div class='authPadding'>
           <p>Create a password:</p>
           <input required type='password' ng-model='ctrl.user.password'>
         </div>
@@ -72,26 +72,3 @@
   </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-<!-- This is the script section -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-
-<!-- This is the CDN section -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<!-- This is our local files -->
-
-<script src= "auth.js" charset="utf-8"></script>
-<script src="../services/services.js" charset="utf-8"></script>
-<!-- <script src="../app.js" charset="utf-8"></script> -->
-<link rel="stylesheet" type="text/css" href="../../styles/main.css">
