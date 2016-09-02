@@ -29,6 +29,10 @@ angular.module('suhp.auth', [])
 
   };
 
+  vm.storeFriendEmailList = function(){
+    Auth.storeFriendEmailList()
+  }
+
   // Triggers the auth function so it posts user information and directs them to dashboard
 
   vm.signin = function(){
