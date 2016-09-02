@@ -12,13 +12,20 @@
     <div class = "signup col-md-12">
 
       <form name="signupForm" ng-submit='ctrl.signup()'>
-        <div id='newuser'>
+        <div class='padding'>
           <p>What's your name?</p>
-          <input required type='text' ng-model='ctrl.user.userName'>
+          <p ng-show="ctrl.usernameTaken">
+            Try a new Username
+          </p>
+          <input required type='text' ng-model='ctrl.user.username'>
         </div>
-        <div id= 'email'>
+        <div class='padding'>
           <p>What's your email?</p>
-          <input required type='text' ng-model='ctrl.user.userEmail'>
+          <input required type='text' ng-model='ctrl.user.email'>
+        </div>
+        <div class='padding'>
+          <p>Create a password:</p>
+          <input required type='password' ng-model='ctrl.user.password'>
         </div>
         <br>
         <input class="btn btn-info" value="Join" type="submit">
@@ -36,28 +43,30 @@
     <div class='friendlist col-md-6'>
       <h3>Add a Judger</h3>
       <form ng-submit='storeFriendEmailList()'>
-        <p>Enter your friend's email</p>
+        <p>Enter your friend's email:</p>
         <div id='friendEmail'>
           <input type="email" placeholder="email" ng-model='ctrl.user.friendEmail'>
         </div>
         <br>
-        <p>Enter your friend's name</p>
+        <!-- <p>Enter your friend's name:</p>
         <div id='friendName'>
           <input type='text' placeholder="friend name" ng-model='ctrl.user.friendName'>
         </div>
-        <br>
+        <br> -->
         <input type="submit" class="btn btn-info" value="Add friend">
       </form>
     </div>
 
     <div class='friendlist col-md-6'>
       <h3>List of Judges</h3>
-      <p>
-        {{ctrl.user.friendName}}
-      </p>
-      <p>
-        {{ctrl.user.friendEmail}}
-      </p>
+      <div ng-repeat="friend in ctrl.user.emails">
+        <!-- <p>
+          {{ctrl.user.friendName}}
+        </p> -->
+        <p>
+          {{ctrl.user.friendEmail}}
+        </p>
+    </div>
 
   </div>
 

@@ -3,10 +3,12 @@ angular.module('suhp.auth', [])
 .controller('AuthController', [function(Auth){
   var vm = this;
   vm.user = {};
+  vm.user.emails =[];
   vm.userFound = Auth.userFound;
   vm.showSigninError = function(){
     return vm.userFound;
-  }
+  };
+  vm.usernameTaken;
 
 //Sign up should check username availability
 
@@ -14,17 +16,13 @@ angular.module('suhp.auth', [])
 
     Auth.signup(vm.user)
       .then(function(response){
-        //? establish response type client will receive from database
-        // will need to receive a boolean indicating whether or not username is in db
-                //if username is taken,
-                  //then ng-show *username is taken, try another name
-                //else change view to dashboard
 
+        //run a function that hides the entire sign up section and just shows the friends list
 
       })
       .catch(function(error){
+        usernameTaken = true;
         console.log(error);
-        alert('There was an error signing you up. Please refresh the page and try again.');
       });
 
   };
