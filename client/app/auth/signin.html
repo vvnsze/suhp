@@ -1,0 +1,42 @@
+<div ng-controller="AuthController" as ctrl>
+
+<div class="container-fluid signBackground">
+
+    <div class= "row">
+      <div class="col-md-12">
+        <div class="row jumbotron" id= "signinJumbo">
+          <h1>Sign In to Avoid Shame</h1>
+          <h3>Septa-Unella Honors Program<h3>
+        </div>
+      </div>
+    </div>
+
+    <div class = "row signinform">
+
+      <div class="col-md-12">
+        <form name=signin ng-submit="ctrl.signin()">
+          Username:
+          <input class = "authinput" type="text" ng-model="ctrl.user.username" required placeholder="Enter username">
+          <!-- <div ng-if="ctrl.showSigninError()">
+            <br>
+            Sign in failed. Please try again
+          </div> -->
+          <br><br>
+          Password:
+          <input class = "authinput" type="password" ng-model="ctrl.user.password" required placeholder="Enter password">
+          <br><br>
+          <input class="signButton" value="Sign In" type="submit">
+        </form>
+        <a class="signLink" ng-href ="#/signup">Sign Up to Avoid Shame</a>
+      </div>
+      <p class="signinError">{{ctrl.errorMsg}}</p>
+    </div>
+
+    <div class = "row signinEmpty">
+      <div class ="col-md-12"></div>
+    </div>
+
+  </div>
+
+
+</div>

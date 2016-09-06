@@ -1,0 +1,90 @@
+<div class = "container-fluid signBackground">
+
+  <div class="row jumbotron" id= "signupJumbo">
+    <div class="col-md-12">
+      <h1>Septa Unella <br>Honors Program</h1>
+      <h3> Prepare to be punished</h3>
+    </div>
+  </div>
+
+ <!-- this is the code for user signup -->
+ <div class='row'>
+
+
+   <div class = "signup col-md-12" ng-hide='ctrl.showFriendForm'>
+
+     <form name="signupForm" class="signupForm">
+       <p id="signupSign">Join the Greater Good</p>
+       <br>
+       <div class='authPadding'>
+         <p>What's your name?</p>
+         <p ng-show="ctrl.usernameTaken">
+           Try a new Username
+         </p>
+         <input class = "authinput" required type='text' ng-model='ctrl.user.username'>
+       </div>
+       <p ng-show='ctrl.errorMsg.length > 3' class="signinError">{{ctrl.errorMsg}}</p>
+       <div class='authPadding'>
+         <p>What's your email?</p>
+         <input class = "authinput" required type='email' ng-model='ctrl.user.email'>
+       </div>
+       <div class='authPadding'>
+         <p>Create a password:</p>
+         <input class = "authinput" required type='password' ng-model='ctrl.user.password'>
+       </div>
+       <br>
+       <button class="signButton" ng-click='ctrl.signup()'>Join</button>
+       <br>
+       <a class= "signLink" href="#/signin">Already a member? <strong>Signin</strong></a>
+     </form>
+   </div>
+
+
+ </div>
+
+ <div class = "row signinEmpty">
+   <div class ="col-md-12"></div>
+ </div>
+
+<!-- This is the code for adding friends -->
+
+ <div class = 'row' ng-show='ctrl.showFriendForm'>
+
+   <div class='friendlist col-md-6'>
+
+     <form class ="signupForm" ng-submit='ctrl.addFriend()'>
+       <h3 class="friendTitle">Add a Judger</h3>
+       <p>Enter email:</p>
+       <div id='friendEmail'>
+         <input class= "authinput" type="email" placeholder="email" ng-model='ctrl.user.friendEmail'>
+       </div>
+       <br>
+       <!-- <p>Enter your friend's name:</p>
+       <div id='friendName'>
+         <input type='text' placeholder="friend name" ng-model='ctrl.user.friendName'>
+       </div>
+       <br> -->
+       <input type="submit" class="signButton" value="Add a friend">
+     </form>
+   </div>
+
+   <div class='signupForm friendlist col-md-6'>
+     <h3 class="friendTitle">List of Judges</h3>
+     <div ng-repeat="friend in ctrl.user.emails">
+       <!-- <p>
+         {{ctrl.user.friendName}}
+       </p> -->
+       <p>
+         {{friend}}
+       </p>
+     </div>
+     <br>
+     <button class="signButton" ng-click="ctrl.storeFriendEmailList()">Confirm List of Judges</button>
+
+ </div>
+
+ <div class = "row signinEmpty">
+   <div class ="col-md-12"></div>
+ </div>
+
+</div>
