@@ -2,6 +2,7 @@
 
 <div class="container-fluid signBackground">
 
+  <!-- This is the jumbotron -->
     <div class= "row">
       <div class="col-md-12">
         <div class="row jumbotron" id= "signinJumbo">
@@ -11,16 +12,13 @@
       </div>
     </div>
 
+    <!-- This is the signinForm -->
     <div class = "row signinform">
 
       <div class="col-md-12">
         <form name=signin ng-submit="ctrl.signin()">
           Username:
           <input class = "authinput" type="text" ng-model="ctrl.user.username" required placeholder="Enter username">
-          <!-- <div ng-if="ctrl.showSigninError()">
-            <br>
-            Sign in failed. Please try again
-          </div> -->
           <br><br>
           Password:
           <input class = "authinput" type="password" ng-model="ctrl.user.password" required placeholder="Enter password">

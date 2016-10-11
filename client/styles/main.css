@@ -107,18 +107,41 @@
   outline: none;
 }
 
-.dashboardjumbo {
-  position: relative;
-  margin-left: 25%;
-  margin-right: 25%;
+.authPadding{
+  padding-bottom: 15px;
+}
+
+.signup {
+  margin: 0 auto;
   text-align: center;
+}
+
+.friendlist {
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+.signinError {
+  color: #8C2530;
+  font-family: 'Cinzel', serif;
+}
+
+.friendTitle {
+  font-size: 35px;
+  color: #333333;
+}
+
+/*Below are codes for dashboard*/
+
+.jumbotron .dashboardjumbo {
+  position: relative;
   background: #000 url("https://brobible.files.wordpress.com/2016/06/septa-unella.jpg?quality=90&w=550") ;
   background-size: cover;
   width: 550px;
   height: 366px;
   color: #F3D3BD
 }
-
 
 .userdash-header {
   text-align: center;
@@ -134,24 +157,29 @@ nav {
 
 }
 
+.goalsList {
+  margin-top: 20px;
+  width: 85%;
+  color: #333333;
+  border-top: solid;
+  border-width: thin;
+  border-color: #5E5E5E
+}
+
+.goals-input, .goalsList{
+  font-family: 'Playfair Display', serif;
+}
+
+.fetchedButton {
+  background-color: #8B575C;
+  color: white;
+  margin: 4px;
+}
+
 .nav-component {
   display: inline;
   background-color: white;
   text-align: right
-}
-
-.authPadding{
-  padding-bottom: 15px;
-}
-
-.signup {
-  margin: 0 auto;
-  text-align: center;
-}
-
-.friendlist {
-  margin: 0 auto;
-  text-align: center;
 }
 
 
