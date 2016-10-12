@@ -1,0 +1,48 @@
+body{
+  background-image: url('../assets/womanMeditate.jpg');
+}
+
+.outersignIn {
+  font-family: 'Comfortaa', sans-serif;
+}
+
+.outersignIn h1 {
+  font-size: 95px;
+  color: #EA7317;
+  margin-left: 50px;
+  margin-right: auto;
+}
+
+#honorsWrapper h2{
+  font-size: 55px;
+  margin-left: 107px;
+  margin-right: auto;
+  position: relative;
+  bottom: 25px;
+  color: #71BCE8;
+}
+
+.signinform {
+  border-color: #71BCE8;
+  border-style: solid;
+  border-radius: 25px;
+  border-width: thick;
+  width: 400px;
+  height: 450px;
+  margin-left: 107px;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-bottom: auto;
+  text-align: center;
+  font-family: 'Oxygen', sans-serif;
+  background-color: rgba(189,228,167,0.3);
+}
+
+.signin {
+  display: inline-block;
+  /*padding-top: 20px;
+  padding-bottom: auto;
+  padding-left: 20px;
+  padding-right: auto;*/
+  margin: 0 auto;
+}

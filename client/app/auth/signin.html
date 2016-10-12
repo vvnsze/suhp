@@ -1,0 +1,35 @@
+<div ng-controller="AuthController" as ctrl>
+
+  <!-- This is the jumbotron -->
+    <div class= "outersignIn">
+        <div class="signInTitle">
+          <h1>Septa-Unella</h1>
+          <div id="honorsWrapper">
+          <h2>Honors Program</h2>
+          </div>
+        </div>
+
+
+    <!-- This is the signinForm -->
+    <div class = "signinform">
+        <h3>Sign in and Avoid Shame<h3>
+        <form class= "signin" name=signin ng-submit="ctrl.signin()">
+          <input class = "authinput" type="text" ng-model="ctrl.user.username" required placeholder="Enter username">
+          <br><br>
+          <input class = "authinput" type="password" ng-model="ctrl.user.password" required placeholder="Enter password">
+          <br><br>
+          <input class="signButton" value="Sign In" type="submit">
+          <br></br>
+        </form>
+        <div class="signupWrapper"><a class="signLink" ng-href ="#/signup">Sign Up</a></div>
+      <p class="signinError">{{ctrl.errorMsg}}</p>
+    </div>
+
+    <div class = "signinEmpty">
+    </div>
+
+  </div>
+
+
+
+</div>
