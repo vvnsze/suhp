@@ -12,6 +12,7 @@
 
     <!-- This is the signinForm -->
     <div class = "signinform">
+      <div class="signinlogo"><i class="fa fa-bell fa-3x" aria-hidden="true"></i></div>
         <h3>Sign in and Avoid Shame<h3>
         <form class= "signin" name=signin ng-submit="ctrl.signin()">
           <input class = "authinput" type="text" ng-model="ctrl.user.username" required placeholder="Enter username">
@@ -21,7 +22,7 @@
           <input class="signButton" value="Sign In" type="submit">
           <br></br>
         </form>
-        <div class="signupWrapper"><a class="signLink" ng-href ="#/signup">Sign Up</a></div>
+        <div class="signupWrapper"><a class="signLink" ng-href ="#/signup">Join the Program</a></div>
       <p class="signinError">{{ctrl.errorMsg}}</p>
     </div>
 

@@ -1,3 +1,7 @@
+*:focus {
+    outline: none;
+}
+
 body{
   background-image: url('../assets/womanMeditate.jpg');
 }
@@ -22,6 +26,20 @@ body{
   color: #71BCE8;
 }
 
+.signupWrapper {
+  position: relative;
+  font-size: 25px;
+  margin: 0 auto;
+  color: #71BCE8;
+  font-family: 'Comfortaa', sans-serif;
+}
+
+.signLink:hover {
+  text-decoration: none;
+  color: #EA7317;
+  font-family: 'Comfortaa', sans-serif;
+}
+
 .signinform {
   border-color: #71BCE8;
   border-style: solid;
@@ -38,11 +56,52 @@ body{
   background-color: rgba(189,228,167,0.3);
 }
 
+.signinform h3 {
+  margin-top: 60px;
+  margin-bottom: auto;
+  color: #2F6690;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.signinform input {
+  font-family: 'Comfortaa', sans-serif;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-color: #2F6690;
+  border-width: 4px;
+  background-color: transparent;
+  border-radius: 4px;
+  text-align: center;
+  color: #EA7317;
+}
+
+.signinlogo {
+  position: relative;
+  top: 30px;
+  color: #EA7317;
+}
+
+
+.authinput:hover {
+  width: 300px;
+}
+
+.signButton {
+  border: none;
+  font-size: 30px;
+}
+
+.signButton:hover{
+  font-weight: bold;
+}
+
 .signin {
   display: inline-block;
-  /*padding-top: 20px;
-  padding-bottom: auto;
-  padding-left: 20px;
-  padding-right: auto;*/
   margin: 0 auto;
+}
+
+.signinError{
+  color: #A30000;
+  font-size: 50px;
 }
