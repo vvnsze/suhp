@@ -2,8 +2,13 @@
     outline: none;
 }
 
-body{
+.signinpage{
   background-image: url('../assets/womanMeditate.jpg');
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  position: fixed;
 }
 
 .outersignIn {
@@ -104,4 +109,14 @@ body{
 .signinError{
   color: #A30000;
   font-size: 50px;
+}
+
+.signupBackground{
+  background-image: url('../assets/dadWithDaughter.jpg');
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  position: fixed;
+  font-family: 'Comfortaa', sans-serif;
 }
